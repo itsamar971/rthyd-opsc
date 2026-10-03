@@ -272,18 +272,6 @@ button {
   position: relative;
 }
 
-.search-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: linear-gradient(90deg, var(--neo-green) 0%, var(--neo-blue) 100%);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
 .form-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr auto;
