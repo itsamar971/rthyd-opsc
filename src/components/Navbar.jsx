@@ -20,10 +20,10 @@ export default function Navbar({ onOpenSettings, hasCustomKey }) {
             type="button" 
             className="btn-ghost" 
             onClick={onOpenSettings}
-            title="Configure Groq API Key & GitHub Token"
+            title="Configure GitHub Token (Optional)"
           >
             <Settings size={16} />
-            <span>API Settings</span>
+            <span>GitHub Token</span>
             {hasCustomKey && (
               <span style={{ 
                 width: '6px', 

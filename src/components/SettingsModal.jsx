@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { X, Key, Shield, ExternalLink, Check } from 'lucide-react';
 
 export default function SettingsModal({ isOpen, onClose, keys, onSaveKeys, serverConfig }) {
-  const [groqKey, setGroqKey] = useState(keys.groqKey || '');
   const [githubToken, setGithubToken] = useState(keys.githubToken || '');
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    setGroqKey(keys.groqKey || '');
     setGithubToken(keys.githubToken || '');
   }, [keys]);
 
@@ -16,7 +14,7 @@ export default function SettingsModal({ isOpen, onClose, keys, onSaveKeys, serve
   const handleSave = (e) => {
     e.preventDefault();
     onSaveKeys({
-      groqKey: groqKey.trim(),
+      ...keys,
       githubToken: githubToken.trim(),
     });
     setSaved(true);
@@ -32,7 +30,7 @@ export default function SettingsModal({ isOpen, onClose, keys, onSaveKeys, serve
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Key size={20} color="#000000" />
-            <h3 style={{ fontSize: '1.25rem' }}>API Configuration</h3>
+            <h3 style={{ fontSize: '1.25rem' }}>GitHub Token Settings</h3>
           </div>
           <button type="button" onClick={onClose} className="btn-ghost" style={{ padding: '6px' }}>
             <X size={18} />
@@ -40,38 +38,6 @@ export default function SettingsModal({ isOpen, onClose, keys, onSaveKeys, serve
         </div>
 
         <form onSubmit={handleSave}>
-          <div className="input-group" style={{ marginBottom: '18px' }}>
-            <label className="input-label" htmlFor="groq-key">
-              <span>Groq API Key</span>
-              {serverConfig?.hasGroqKey && (
-                <span style={{ color: '#059669', fontSize: '0.75rem', fontWeight: 800 }}>
-                  (Detected in .env)
-                </span>
-              )}
-            </label>
-            <div className="input-field-wrapper">
-              <input
-                id="groq-key"
-                type="password"
-                className="input-field"
-                style={{ paddingLeft: '14px' }}
-                placeholder={serverConfig?.hasGroqKey ? 'Configured in .env (override here)' : 'gsk_...'}
-                value={groqKey}
-                onChange={(e) => setGroqKey(e.target.value)}
-              />
-            </div>
-            <p style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '4px' }}>
-              Groq provides fast, free inference for open-weight models.{' '}
-              <a 
-                href="https://console.groq.com/keys" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ color: '#2563EB', textDecoration: 'underline', display: 'inline-flex', alignItems: 'center', gap: '2px', fontWeight: 700 }}
-              >
-                Get a free key <ExternalLink size={12} />
-              </a>
-            </p>
-          </div>
 
           <div className="input-group" style={{ marginBottom: '22px' }}>
             <label className="input-label" htmlFor="github-token">
