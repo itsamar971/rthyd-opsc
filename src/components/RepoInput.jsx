@@ -15,9 +15,9 @@ const PRESETS = [
     level: 'Beginner',
   },
   {
-    name: 'FastAPI (Python)',
-    repo: 'fastapi/fastapi',
-    skills: 'Python, Type hints, Beginner',
+    name: 'Docusaurus (React)',
+    repo: 'facebook/docusaurus',
+    skills: 'React, Markdown, CSS, Beginner',
     level: 'Beginner',
   },
   {
