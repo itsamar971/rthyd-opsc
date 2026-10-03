@@ -29,9 +29,16 @@ export default function App() {
   const [keys, setKeys] = useState(() => {
     try {
       const saved = localStorage.getItem('first_pr_finder_keys');
-      return saved ? JSON.parse(saved) : { groqKey: '', githubToken: '' };
+      const parsed = saved ? JSON.parse(saved) : {};
+      return {
+        groqKey: parsed.groqKey || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GROQ_API_KEY) || '',
+        githubToken: parsed.githubToken || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GITHUB_TOKEN) || '',
+      };
     } catch {
-      return { groqKey: '', githubToken: '' };
+      return {
+        groqKey: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GROQ_API_KEY) || '',
+        githubToken: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GITHUB_TOKEN) || '',
+      };
     }
   });
 
@@ -40,7 +47,15 @@ export default function App() {
     fetch('/api/config')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data) setServerConfig(data);
+        if (data) {
+          setServerConfig(data);
+          if (data.githubToken) {
+            setKeys((prev) => ({
+              ...prev,
+              githubToken: prev.githubToken || data.githubToken,
+            }));
+          }
+        }
       })
       .catch((err) => console.log('Standalone mode or no dev api config:', err));
   }, []);

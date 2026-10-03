@@ -23,11 +23,12 @@ export function parseRepoInput(input) {
 }
 
 function getHeaders(token) {
+  const effectiveToken = token || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GITHUB_TOKEN) || '';
   const headers = {
     'Accept': 'application/vnd.github.v3+json',
   };
-  if (token && token.trim()) {
-    headers['Authorization'] = `Bearer ${token.trim()}`;
+  if (effectiveToken && effectiveToken.trim()) {
+    headers['Authorization'] = `Bearer ${effectiveToken.trim()}`;
   }
   return headers;
 }

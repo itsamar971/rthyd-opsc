@@ -7,24 +7,26 @@ dotenv.config();
 
 // Custom Vite plugin to handle backend API routes in dev mode
 function apiPlugin() {
-  return {
-    name: 'first-pr-api-plugin',
-    configureServer(server) {
-      server.middlewares.use(async (req, res, next) => {
-        // GET /api/config
-        if (req.method === 'GET' && req.url === '/api/config') {
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({
-            hasGroqKey: !!process.env.GROQ_API_KEY,
-            hasGithubToken: !!process.env.GITHUB_TOKEN,
-            githubToken: process.env.GITHUB_TOKEN || '',
-            model: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
-          }));
-          return;
-        }
+  const handleApi = async (req, res, next) => {
+    const url = new URL(req.url, 'http://localhost');
+    const pathname = url.pathname;
 
-        // POST /api/recommend
-        if (req.method === 'POST' && req.url === '/api/recommend') {
+    // GET /api/config
+    if (req.method === 'GET' && (pathname === '/api/config' || pathname === '/api/config/')) {
+      const groqKey = process.env.GROQ_API_KEY || process.env.VITE_GROQ_API_KEY;
+      const ghToken = process.env.GITHUB_TOKEN || process.env.VITE_GITHUB_TOKEN;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({
+        hasGroqKey: !!groqKey,
+        hasGithubToken: !!ghToken,
+        githubToken: ghToken || '',
+        model: process.env.GROQ_MODEL || process.env.VITE_GROQ_MODEL || 'openai/gpt-oss-120b',
+      }));
+      return;
+    }
+
+    // POST /api/recommend
+    if (req.method === 'POST' && (pathname === '/api/recommend' || pathname === '/api/recommend/')) {
           let body = '';
           req.on('data', chunk => { body += chunk; });
           req.on('end', async () => {
@@ -123,10 +125,18 @@ Analyze these issues carefully, pick the top 3 best matching issues for the cont
         }
 
         next();
-      });
-    },
-  };
-}
+      };
+
+      return {
+        name: 'first-pr-api-plugin',
+        configureServer(server) {
+          server.middlewares.use(handleApi);
+        },
+        configurePreviewServer(server) {
+          server.middlewares.use(handleApi);
+        },
+      };
+    }
 
 export default defineConfig({
   plugins: [react(), apiPlugin()],
