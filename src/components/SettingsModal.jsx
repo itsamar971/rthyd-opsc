@@ -69,10 +69,12 @@ export default function SettingsModal({ isOpen, onClose, keys, onSaveKeys, serve
             alignItems: 'center',
             gap: '8px',
             padding: '10px 14px',
-            borderRadius: '8px',
-            background: 'rgba(255, 255, 255, 0.03)',
-            fontSize: '0.78rem',
-            color: 'var(--text-dim)',
+            borderRadius: '0px',
+            border: '2px solid #000000',
+            background: '#F1F5F9',
+            fontSize: '0.82rem',
+            fontWeight: 600,
+            color: '#000000',
             marginBottom: '16px'
           }}>
             <Shield size={16} color="#94a3b8" />

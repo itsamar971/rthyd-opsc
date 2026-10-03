@@ -26,10 +26,10 @@ export default function Navbar({ onOpenSettings, hasCustomKey }) {
             <span>GitHub Token</span>
             {hasCustomKey && (
               <span style={{ 
-                width: '6px', 
-                height: '6px', 
-                borderRadius: '50%', 
-                background: '#10b981', 
+                width: '7px', 
+                height: '7px', 
+                borderRadius: '0px', 
+                background: '#059669', 
                 display: 'inline-block' 
               }} />
             )}
