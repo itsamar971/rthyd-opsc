@@ -80,7 +80,7 @@ export default function RecommendationCard({ recommendation, index, repoInfo }) 
       {recommendation.files_to_touch && recommendation.files_to_touch.length > 0 && (
         <div>
           <div className="section-label">
-            <FileCode size={14} color="#38bdf8" />
+            <FileCode size={16} color="#2563EB" />
             <span>Files you'll likely need to touch</span>
           </div>
           <div className="files-chips">
@@ -91,9 +91,9 @@ export default function RecommendationCard({ recommendation, index, repoInfo }) 
                   type="button"
                   onClick={() => copyToClipboard(filePath)}
                   title="Copy file path"
-                  style={{ color: copiedFile === filePath ? '#34d399' : '#94a3b8', display: 'flex' }}
+                  style={{ color: copiedFile === filePath ? '#059669' : '#000000', display: 'flex' }}
                 >
-                  {copiedFile === filePath ? <Check size={13} /> : <Copy size={13} />}
+                  {copiedFile === filePath ? <Check size={14} /> : <Copy size={14} />}
                 </button>
               </span>
             ))}
@@ -104,7 +104,7 @@ export default function RecommendationCard({ recommendation, index, repoInfo }) 
       {recommendation.first_steps && recommendation.first_steps.length > 0 && (
         <div>
           <div className="section-label">
-            <CheckCircle2 size={14} color="#34d399" />
+            <CheckCircle2 size={16} color="#059669" />
             <span>First steps to start fixing</span>
           </div>
           <ol className="steps-list">

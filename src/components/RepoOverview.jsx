@@ -28,22 +28,22 @@ export default function RepoOverview({ repoInfo }) {
 
       <div className="repo-stats">
         {repoInfo.language && (
-          <div className="stat-item" title="Primary Language">
-            <Code size={16} color="#60a5fa" />
+          <div className="stat-item" style={{ background: '#DBEAFE' }} title="Primary Language">
+            <Code size={18} color="#000000" />
             <span>{repoInfo.language}</span>
           </div>
         )}
-        <div className="stat-item" title="GitHub Stars">
-          <Star size={16} color="#facc15" />
-          <span>{repoInfo.stars?.toLocaleString()}</span>
+        <div className="stat-item" style={{ background: '#FEF08A' }} title="GitHub Stars">
+          <Star size={18} color="#000000" />
+          <span>{repoInfo.stars?.toLocaleString()} stars</span>
         </div>
-        <div className="stat-item" title="Forks">
-          <GitFork size={16} color="#c084fc" />
-          <span>{repoInfo.forks?.toLocaleString()}</span>
+        <div className="stat-item" style={{ background: '#D1FAE5' }} title="Forks">
+          <GitFork size={18} color="#000000" />
+          <span>{repoInfo.forks?.toLocaleString()} forks</span>
         </div>
-        <div className="stat-item" title="Open Issues">
-          <AlertCircle size={16} color="#f87171" />
-          <span>{repoInfo.openIssuesCount} issues</span>
+        <div className="stat-item" style={{ background: '#FFE4E6' }} title="Open Issues">
+          <AlertCircle size={18} color="#000000" />
+          <span>{repoInfo.openIssuesCount} open issues</span>
         </div>
       </div>
     </div>

@@ -167,17 +167,17 @@ export default function App() {
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-pill">
-            <Sparkles size={14} color="#a5b4fc" />
-            <span>Hacktoberfest Hack Day · Hyderabad</span>
+            <Sparkles size={16} color="#000000" />
+            <span>⚡ HACKTOBERFEST HACK DAY · HYDERABAD</span>
           </div>
 
           <h1 className="hero-title">
-            Find your perfect <span className="gradient-text">first PR</span>.
+            FIND YOUR PERFECT <span className="gradient-text">FIRST PR</span> <span className="gradient-text-blue">NOW.</span>
           </h1>
 
           <p className="hero-desc">
-            Stop scrolling through 200 intimidating tickets. An open-weight AI model
-            reads the repository structure and issues, matching you with the 3 best beginner-ready fixes.
+            Stop drowning in 200 messy tickets. Our open-weight AI model
+            reads repository topology & open issues to match you with the <strong>3 best beginner-ready fixes</strong>.
           </p>
 
           {/* Search Box */}
@@ -198,10 +198,11 @@ export default function App() {
           <div
             className="glass-panel"
             style={{
-              padding: '20px 24px',
-              marginBottom: '32px',
-              borderLeft: '4px solid #f43f5e',
-              background: 'rgba(244, 63, 94, 0.08)',
+              padding: '24px 28px',
+              marginBottom: '36px',
+              border: '3px solid #000000',
+              background: '#FEE2E2',
+              boxShadow: '6px 6px 0px #000000',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -209,15 +210,15 @@ export default function App() {
               flexWrap: 'wrap',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <AlertTriangle size={22} color="#f43f5e" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <AlertTriangle size={26} color="#000000" />
               <div>
-                <strong style={{ color: '#fff' }}>Analysis Notice: </strong>
-                <span style={{ color: '#fecdd3' }}>{error}</span>
+                <strong style={{ color: '#000000', fontSize: '1.1rem' }}>Notice: </strong>
+                <span style={{ color: '#000000', fontWeight: 600 }}>{error}</span>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
                 type="button"
                 className="btn-ghost"

@@ -57,12 +57,12 @@ export default function RepoInput({
           {/* GitHub Repo URL */}
           <div className="input-group">
             <label className="input-label" htmlFor="repo-url">
-              <GitBranch size={15} color="#818cf8" />
+              <GitBranch size={17} color="#2563EB" />
               <span>Public GitHub Repository</span>
             </label>
             <div className="input-field-wrapper">
               <span className="input-icon">
-                <Compass size={18} />
+                <Compass size={20} color="#000000" />
               </span>
               <input
                 id="repo-url"
@@ -79,18 +79,18 @@ export default function RepoInput({
           {/* User Skills */}
           <div className="input-group">
             <label className="input-label" htmlFor="user-skills">
-              <Code2 size={15} color="#ec4899" />
+              <Code2 size={17} color="#059669" />
               <span>Your Skills & Experience</span>
             </label>
             <div className="input-field-wrapper">
               <span className="input-icon">
-                <Code2 size={18} />
+                <Code2 size={20} color="#000000" />
               </span>
               <input
                 id="user-skills"
                 type="text"
                 className="input-field"
-                placeholder="e.g. JavaScript, CSS, Beginner"
+                placeholder="e.g. JavaScript, React, Beginner"
                 value={userSkills}
                 onChange={(e) => setUserSkills(e.target.value)}
               />
@@ -105,12 +105,12 @@ export default function RepoInput({
           >
             {loading ? (
               <>
-                <Loader2 size={18} className="spinner" />
+                <Loader2 size={20} className="spinner" />
                 <span>Analyzing...</span>
               </>
             ) : (
               <>
-                <Sparkles size={18} />
+                <Sparkles size={20} />
                 <span>Find My First PR</span>
               </>
             )}
@@ -119,7 +119,7 @@ export default function RepoInput({
 
         {/* Quick presets */}
         <div className="quick-tags">
-          <span style={{ fontWeight: 600 }}>Try quick sample:</span>
+          <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.85rem' }}>⚡ Quick Samples:</span>
           {PRESETS.map((p) => (
             <button
               key={p.name}
