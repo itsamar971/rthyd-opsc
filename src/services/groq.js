@@ -3,7 +3,7 @@
  */
 import Groq from 'groq-sdk';
 
-export async function getRecommendations({ repoInfo, fileTree, issues, userSkills, apiKey }) {
+export async function getRecommendations({ repoInfo, fileTree, issues, userSkills, apiKey, model = 'openai/gpt-oss-120b' }) {
   // Strategy 1: Try server API route (/api/recommend)
   try {
     const res = await fetch('/api/recommend', {
@@ -15,6 +15,7 @@ export async function getRecommendations({ repoInfo, fileTree, issues, userSkill
         issues,
         userSkills,
         apiKey,
+        model,
       }),
     });
 
@@ -83,7 +84,7 @@ Snippet: ${(issue.body || '').slice(0, 350)}
 `;
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: model || 'openai/gpt-oss-120b',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
@@ -99,5 +100,5 @@ Snippet: ${(issue.body || '').slice(0, 350)}
     }
   }
 
-  throw new Error('Please configure your GROQ_API_KEY in .env or the Settings panel to analyze with Llama 3.3 70B.');
+  throw new Error('Please configure your GROQ_API_KEY in .env or the Settings panel to analyze with open-weight AI.');
 }

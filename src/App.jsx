@@ -110,6 +110,7 @@ export default function App() {
           issues,
           userSkills: `${userSkills} (Level: ${experienceLevel})`,
           apiKey: groqKeyToUse,
+          model: keys.model || serverConfig?.model,
         });
 
         setLoadingStep(4);

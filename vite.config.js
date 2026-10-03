@@ -17,7 +17,7 @@ function apiPlugin() {
           res.end(JSON.stringify({
             hasGroqKey: !!process.env.GROQ_API_KEY,
             hasGithubToken: !!process.env.GITHUB_TOKEN,
-            model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+            model: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
           }));
           return;
         }
@@ -41,7 +41,7 @@ function apiPlugin() {
               }
 
               const groq = new Groq({ apiKey: groqApiKey });
-              const model = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
+              const model = data.model || process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 
               const systemPrompt = `You are First-PR Finder, an expert open-source mentor helping newcomers make their first successful pull request.
 Your job is to analyze the candidate open issues in a GitHub repository against the contributor's skill set and repo structure, and select the TOP 3 BEST issues for this contributor.
