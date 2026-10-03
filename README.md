@@ -28,7 +28,7 @@ Without the model there is no product. The AI does the core work. It **reads and
 
 ```mermaid
 flowchart LR
-    A["User: repo URL + skills"] --> B["Streamlit app"]
+    A["User: repo URL + skills"] --> B["React Web App (Vite)"]
     B --> C["GitHub REST API"]
     C -->|"README, file tree, open issues"| B
     B -->|"structured prompt"| D["Open-weight LLM<br/>Llama 3.3 70B via Groq"]
@@ -48,42 +48,31 @@ The model is swappable. Set the `GROQ_MODEL` environment variable to use any oth
 
 ## Tech Stack
 
-- **Python** + **Streamlit** for the UI
-- **GitHub REST API** for repo data
-- **Groq SDK** for LLM inference
+- **React** + **Vite** for the UI
+- **GitHub REST API** for repository data
+- **Groq SDK** for open-weight LLM inference (Llama 3.3 70B)
+- **Vanilla CSS** with sleek modern dark mode & glassmorphism
 
 ## Run It Locally
 
 ```bash
-git clone https://github.com/<your-username>/first-pr-finder.git
-cd first-pr-finder
-pip install -r requirements.txt
+git clone https://github.com/itsamar971/rthyd-opsc.git
+cd rthyd-opsc
+npm install
 ```
 
-Set your API key:
+Set your API key in a `.env` file (or enter it directly in the app UI):
 
 ```bash
-# macOS / Linux
-export GROQ_API_KEY="your_groq_key"
-
-# Windows (PowerShell)
-$env:GROQ_API_KEY="your_groq_key"
-```
-
-Optional: add a GitHub token to avoid rate limits on shared Wi-Fi:
-
-```bash
-# macOS / Linux
-export GITHUB_TOKEN="your_github_token"
-
-# Windows (PowerShell)
-$env:GITHUB_TOKEN="your_github_token"
+GROQ_API_KEY="your_groq_key"
+# Optional: add a GitHub token to avoid rate limits on shared Wi-Fi
+GITHUB_TOKEN="your_github_token"
 ```
 
 Start the app:
 
 ```bash
-streamlit run app.py
+npm run dev
 ```
 
 ## Example
