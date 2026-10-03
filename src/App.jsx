@@ -77,7 +77,7 @@ export default function App() {
     setLoadingStep(0);
 
     try {
-      const token = keys.githubToken || undefined;
+      const token = keys.githubToken || serverConfig?.githubToken || undefined;
 
       // Step 1: Repo metadata
       setLoadingStep(0);

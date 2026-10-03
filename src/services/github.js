@@ -27,7 +27,7 @@ function getHeaders(token) {
     'Accept': 'application/vnd.github.v3+json',
   };
   if (token && token.trim()) {
-    headers['Authorization'] = `token ${token.trim()}`;
+    headers['Authorization'] = `Bearer ${token.trim()}`;
   }
   return headers;
 }

@@ -17,6 +17,7 @@ function apiPlugin() {
           res.end(JSON.stringify({
             hasGroqKey: !!process.env.GROQ_API_KEY,
             hasGithubToken: !!process.env.GITHUB_TOKEN,
+            githubToken: process.env.GITHUB_TOKEN || '',
             model: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
           }));
           return;
